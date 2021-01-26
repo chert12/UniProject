@@ -9,16 +9,17 @@ namespace UniProject.Di
     /// </summary>
     public class ApplicationMonoInstaller : MonoInstaller
     {
-        private const string PROJECT_CONTEXT_NAME = "ProjectContext";
+        private const string ProjectContextName = "ProjectContext";
 
         /// <summary>
         /// Installing bindings
         /// </summary>
         public override void InstallBindings()
         {
-            name = PROJECT_CONTEXT_NAME;
+            name = ProjectContextName;
 
             Container.BindInterfacesTo<ApplicationService>().AsSingle();
+            Container.BindInterfacesTo<CacheService>().FromNewComponentOnNewGameObject().AsSingle();
             //TODO install binding here
         }
     }

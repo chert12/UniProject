@@ -39,14 +39,19 @@ namespace UniProject.Demo
         private void ConfigureStateMachine()
         {
             StateMachine.Configure(State.Start)
-                .Permit(Trigger.StartLoading, State.Menu);
+                .Permit(Trigger.StartLoading, State.Menu)
+                .OnExitAsync(async () =>
+                {
+                    await UniTask.SwitchToMainThread();
+                    await LoadSceneAsync(Scene.Overlay, LoadSceneMode.Additive, false);
+                });
 
             StateMachine.Configure(State.Menu)
                 .Permit(Trigger.StartGame, State.Game)
                 .OnEntryAsync(async () =>
                 {
                     await UniTask.SwitchToMainThread();
-                    await LoadSceneAsync(Scene.Overlay, LoadSceneMode.Additive, false);
+                    //await LoadSceneAsync(Scene.Overlay, LoadSceneMode.Additive, false);
                     await LoadSceneAsync(Scene.Menu, LoadSceneMode.Additive);
                     await UnloadSceneAsync(Scene.Start);
                 })

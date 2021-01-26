@@ -64,8 +64,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demo\Scripts\Abstractions\IApplicationService.cs" />
-    <Compile Include="Assets\Demo\Scripts\ApplicationService.cs" />
-    <Compile Include="Assets\Demo\Scripts\Test.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\ICacheService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IErrorService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IGameService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IMenuService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IMenuViewModel.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IMessageService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IOverlayService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Abstractions\IOverlayViewModel.cs" />
+    <Compile Include="Assets\Demo\Scripts\Data\Constants.cs" />
+    <Compile Include="Assets\Demo\Scripts\Data\ErrorType.cs" />
+    <Compile Include="Assets\Demo\Scripts\Data\MessageData.cs" />
+    <Compile Include="Assets\Demo\Scripts\MonoInstallers\GameSceneMonoInstaller.cs" />
+    <Compile Include="Assets\Demo\Scripts\MonoInstallers\MenuSceneMonoInstaller.cs" />
+    <Compile Include="Assets\Demo\Scripts\MonoInstallers\OverlaySceneMonoInstaller.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\ApplicationService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\CacheService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\ErrorService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\GameService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\MenuService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\MessageService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Services\OverlayService.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\Abstractions\ADisposableView.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\Abstractions\APopupView.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\ErrorPopUpView.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\GameMenuView.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\LoadingPopup.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\MenuSceneView.cs" />
+    <Compile Include="Assets\Demo\Scripts\Views\MessagePopUpView.cs" />
     <Compile Include="Assets\Scripts\Application\Abstractions\AMonoService.cs" />
     <Compile Include="Assets\Scripts\Application\Abstractions\AService.cs" />
     <Compile Include="Assets\Scripts\Application\MonoInstallers\ApplicationMonoInstaller.cs" />
@@ -650,6 +676,9 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/projects/unityProjects/uniproject/UniProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>F:/projects/unityProjects/uniproject/UniProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
