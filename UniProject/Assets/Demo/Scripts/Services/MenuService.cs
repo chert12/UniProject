@@ -1,4 +1,6 @@
-﻿using UniProject.Abstractions;
+﻿using System;
+using UniProject.Abstractions;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -11,16 +13,18 @@ namespace UniProject.Demo
         
         public int BestScore { get; private set; }
         
-        private IApplicationService _applicationService;
-
+        private readonly IApplicationService _applicationService;
+        private readonly IOverlayService _overlayService;
+            
         #endregion
 
         #region interface
         
         [Inject]
-        public MenuService(IApplicationService applicationService)
+        public MenuService(IApplicationService applicationService, IOverlayService overlayService)
         {
             _applicationService = applicationService;
+            _overlayService = overlayService;
         }
 
         public override void Initialize()
@@ -40,7 +44,11 @@ namespace UniProject.Demo
 
         public void StartGame()
         {
-            _applicationService.StartGame();
+            _overlayService.SetLoading(true);
+
+            Observable.Timer(TimeSpan.FromSeconds(1))
+                .Subscribe(_ => _applicationService.StartGame())
+                .AddTo(Disposer);
         }
 
         public void ExitApplication()

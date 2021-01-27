@@ -40,37 +40,32 @@ namespace UniProject.Demo
         {
             StateMachine.Configure(State.Start)
                 .Permit(Trigger.StartLoading, State.Menu)
-                .OnExitAsync(async () =>
+                .OnExit( async () =>
                 {
-                    await UniTask.SwitchToMainThread();
                     await LoadSceneAsync(Scene.Overlay, LoadSceneMode.Additive, false);
+                    await UnloadSceneAsync(Scene.Start);
                 });
 
             StateMachine.Configure(State.Menu)
                 .Permit(Trigger.StartGame, State.Game)
-                .OnEntryAsync(async () =>
+                .OnEntry(async () =>
                 {
-                    await UniTask.SwitchToMainThread();
                     //await LoadSceneAsync(Scene.Overlay, LoadSceneMode.Additive, false);
                     await LoadSceneAsync(Scene.Menu, LoadSceneMode.Additive);
-                    await UnloadSceneAsync(Scene.Start);
                 })
-                .OnExitAsync(async () =>
+                .OnExit(async () =>
                 {
-                    await UniTask.SwitchToMainThread();
                     await UnloadSceneAsync(Scene.Menu);
                 });
 
             StateMachine.Configure(State.Game)
                 .Permit(Trigger.BackToMenu, State.Menu)
-                .OnEntryAsync(async () =>
+                .OnEntry(async () =>
                 {
-                    await UniTask.SwitchToMainThread();
                     await LoadSceneAsync(Scene.Game, LoadSceneMode.Additive);
                 })
-                .OnExitAsync(async () =>
+                .OnExit(async () =>
                 {
-                    await UniTask.SwitchToMainThread();
                     await UnloadSceneAsync(Scene.Game);
                     GC.Collect();
                     Resources.UnloadUnusedAssets();
